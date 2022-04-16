@@ -87,6 +87,15 @@ public class MemberService {
         return sum;
     }
 
+    private void payDebt(long id) throws Exception{
+        Member member = getMemberFromOptional(id);
+        for(Fine f : member.getFineList()){
+            fineRepository.delete(f);
+            member.getFineList().remove(f);
+        }
+        memberRepository.save(member);
+    }
+
     private Loan findLoan(Member member, Document document) throws Exception {
         for(Loan l : member.getLoanList()){
             if(l.getDocument().equals(document)){

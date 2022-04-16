@@ -15,7 +15,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Member extends User {
-    double debt = 0.00;
 
     @OneToMany(mappedBy = "borrower")
     @ToString.Exclude

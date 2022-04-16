@@ -1,4 +1,4 @@
-package com.skuridov.tp3.tp3spring.dto;
+package com.skuridov.tp3.tp3spring.dto.Document;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

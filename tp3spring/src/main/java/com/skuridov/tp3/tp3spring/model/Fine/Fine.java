@@ -15,7 +15,7 @@ public class Fine {
     @Id
     @GeneratedValue
     private long id;
-    private final double FINE_AMOUNT = 0.25;
+    public static final double FINE_AMOUNT = 0.25;
     private int nbOfDays;
     @ManyToOne
     @JoinColumn(name = "MEMBER_id")

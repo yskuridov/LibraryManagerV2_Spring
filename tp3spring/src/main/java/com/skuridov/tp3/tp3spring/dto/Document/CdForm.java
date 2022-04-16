@@ -1,15 +1,17 @@
-package com.skuridov.tp3.tp3spring.dto;
+package com.skuridov.tp3.tp3spring.dto.Document;
 
 import com.skuridov.tp3.tp3spring.model.Document.Cd;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import static com.skuridov.tp3.tp3spring.model.Document.Cd.CD_LOAN_LENGTH;
 
 @Data
-public class CdForm extends DocumentForm{
-    private final String singer;
-    private final int nbOfTracks;
-    private final String genre;
+@NoArgsConstructor
+public class CdForm extends DocumentForm {
+    private String singer;
+    private int nbOfTracks;
+    private String genre;
 
     public CdForm(String id, String title, int publicationYear, String language, String singer, int nbOfTracks, String genre, int nbCopies) {
         super(id, title, publicationYear, language, CD_LOAN_LENGTH, nbCopies);

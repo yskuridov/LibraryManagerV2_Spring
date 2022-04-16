@@ -1,15 +1,18 @@
-package com.skuridov.tp3.tp3spring.dto;
+package com.skuridov.tp3.tp3spring.dto.Document;
 
+import com.skuridov.tp3.tp3spring.dto.Document.DocumentForm;
 import com.skuridov.tp3.tp3spring.model.Document.Dvd;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import static com.skuridov.tp3.tp3spring.model.Document.Dvd.DVD_LOAN_LENGTH;
 
 @Data
-public class DvdForm extends DocumentForm{
-    private final int duration;
-    private final String category;
-    private final String mainActor;
+@NoArgsConstructor
+public class DvdForm extends DocumentForm {
+    private int duration;
+    private String category;
+    private String mainActor;
 
     public DvdForm(String id, String title, int publicationYear, String language, int duration, String category, String mainActor, int nbCopies) {
         super(id, title, publicationYear, language, DVD_LOAN_LENGTH, nbCopies);

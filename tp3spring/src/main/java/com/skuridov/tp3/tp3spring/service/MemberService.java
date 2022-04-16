@@ -1,6 +1,7 @@
 package com.skuridov.tp3.tp3spring.service;
 
 import com.skuridov.tp3.tp3spring.dto.Document.BookForm;
+import com.skuridov.tp3.tp3spring.dto.Loan.LoanForm;
 import com.skuridov.tp3.tp3spring.model.Document.Book;
 import com.skuridov.tp3.tp3spring.model.Document.Document;
 import com.skuridov.tp3.tp3spring.model.Fine.Fine;
@@ -87,7 +88,7 @@ public class MemberService {
         return sum;
     }
 
-    private void payDebt(long id) throws Exception{
+    public void payDebt(long id) throws Exception{
         Member member = getMemberFromOptional(id);
         for(Fine f : member.getFineList()){
             fineRepository.delete(f);
@@ -95,6 +96,16 @@ public class MemberService {
         }
         memberRepository.save(member);
     }
+
+    public List<LoanForm> getLoans(long id) throws Exception {
+        Member member = getMemberFromOptional(id);
+        List<LoanForm> loanFormList = new ArrayList<>();
+        for(Loan l : member.getLoanList()){
+            loanFormList.add(new LoanForm(l));
+        }
+        return loanFormList;
+    }
+
 
     private Loan findLoan(Member member, Document document) throws Exception {
         for(Loan l : member.getLoanList()){

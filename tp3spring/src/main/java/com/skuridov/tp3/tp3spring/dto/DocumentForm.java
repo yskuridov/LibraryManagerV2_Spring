@@ -9,13 +9,15 @@ import lombok.Setter;
 public abstract class DocumentForm {
     private String id;
     private String title;
+    private int publicationYear;
     private String language;
     private int loanLength;
     private int nbCopies;
 
-    public DocumentForm(String id, String title, String language, int loanLength, int nbCopies){
+    public DocumentForm(String id, String title, int publicationYear, String language, int loanLength, int nbCopies){
         this.id = id;
         this.title = title;
+        this.publicationYear = publicationYear;
         this.language = language;
         this.loanLength = loanLength;
         this.nbCopies = nbCopies;

@@ -15,7 +15,7 @@ public class Book extends Document {
     private String editor;
     private int pageAmount;
     private String genre;
-    private static final int BOOK_LOAN_LENGTH = 21; //days
+    public static final int BOOK_LOAN_LENGTH = 21; //days
 
     public Book(String title, int publicationYear, String language, String author, String editor, int pageAmount, String genre, int nbOfCopies) {
         super(title, publicationYear, language, nbOfCopies);
@@ -25,4 +25,5 @@ public class Book extends Document {
         this.genre = genre;
         this.setLoanLength(BOOK_LOAN_LENGTH);
     }
+
 }

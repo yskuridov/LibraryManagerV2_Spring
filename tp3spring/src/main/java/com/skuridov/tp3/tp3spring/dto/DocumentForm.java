@@ -1,18 +1,23 @@
 package com.skuridov.tp3.tp3spring.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Data
+@NoArgsConstructor
 public abstract class DocumentForm {
-    private final String id;
-    private final String title;
-    private final String language;
-    private final int loanLength;
-    private final int nbCopies;
+    private String id;
+    private String title;
+    private String language;
+    private int loanLength;
+    private int nbCopies;
 
-    public DocumentForm(String id, String title, String language, int nbCopies){
+    public DocumentForm(String id, String title, String language, int loanLength, int nbCopies){
         this.id = id;
         this.title = title;
         this.language = language;
-        this.loanLength = 0;
+        this.loanLength = loanLength;
         this.nbCopies = nbCopies;
     }
 

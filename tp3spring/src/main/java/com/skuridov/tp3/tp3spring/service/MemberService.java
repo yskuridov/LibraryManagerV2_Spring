@@ -70,12 +70,21 @@ public class MemberService {
         Member member = getMemberFromOptional(memberId);
         Document document = getDocumentFromOptional(documentId);
         Loan loan = findLoan(member, document);
-        member.setDebt(member.getDebt() + calculateFee(loan));
+        member.getFineList().add(calculateFine(loan));
         member.getLoanList().remove(loan);
         document.setNbCopies(document.getNbCopies() + 1);
         memberRepository.save(member);
         documentRepository.save(document);
         loanRepository.delete(loan);
+    }
+
+    public double getFineSum(long id) throws Exception {
+        Member member = getMemberFromOptional(id);
+        double sum = 0.00;
+        for(Fine f : member.getFineList()){
+            sum += f.getAmount();
+        }
+        return sum;
     }
 
     private Loan findLoan(Member member, Document document) throws Exception {
@@ -87,14 +96,15 @@ public class MemberService {
         throw new Exception("The document wasn't loaned by that member");
     }
 
-    private double calculateFee(Loan loan){
+    private Fine calculateFine(Loan loan){
         int differenceInDays;
         differenceInDays = (int) (ChronoUnit.DAYS.between(loan.getDateDue(), LocalDate.now()));
-        double fee = 0.00;
         if(differenceInDays > loan.getDocument().getLoanLength()){
-            fee = differenceInDays * Fine.FINE_AMOUNT;
+            Fine fine = new Fine(differenceInDays, loan.getBorrower());
+            fineRepository.save(fine);
+            return fine;
         }
-        return fee;
+        return null;
     }
 
     private Member getMemberFromOptional(long id) throws Exception{

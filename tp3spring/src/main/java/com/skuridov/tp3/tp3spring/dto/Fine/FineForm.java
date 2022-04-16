@@ -10,6 +10,7 @@ public class FineForm {
     private String id;
     private final double FINE_AMOUNT = Fine.FINE_AMOUNT;
     private int nbOfDays;
+    private final double amount = FINE_AMOUNT * nbOfDays;
     private String member;
 
     public FineForm(String id, int nbOfDays, String member) {

@@ -17,6 +17,7 @@ public class Fine {
     private long id;
     public static final double FINE_AMOUNT = 0.25;
     private int nbOfDays;
+    private final double amount = FINE_AMOUNT * nbOfDays;
     @ManyToOne
     @JoinColumn(name = "MEMBER_id")
     private Member member;
